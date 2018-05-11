@@ -5,20 +5,9 @@ export const FETCH_DEPARTURES_SUCCESS = 'FETCH_DEPARTURES_SUCCESS';
 export const FETCH_DEPARTURES_FAILURE = 'FETCH_DEPARTURES_FAILURE';
 
 export const fetchDepartures = stop_area_id => {
-  const request = getNextDepartures(stop_area_id).then(resp => {
-    return Promise.resolve(
-      resp.departures
-        .filter(d => d.display_informations.network === 'RER')
-        .sort((d1, d2) =>
-          d1.display_informations.label.localeCompare(
-            d2.display_informations.label
-          )
-        )
-    );
-  });
   return {
     type: FETCH_DEPARTURES,
-    payload: request
+    payload: stop_area_id
   };
 };
 

@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
-import configureStore from './store/configureStore.js';
+import store from './store'
 
-const store = configureStore();
+store.subscribe(() => {
+  console.log('state changed : ', store.getState())
 
+})
+console.log(store.getState())
 ReactDOM.render(
   <Provider store={store}>
     <App />

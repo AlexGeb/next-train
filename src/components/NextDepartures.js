@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { getNextDepartures } from '../services/api-sncf';
-import * as moment from 'moment';
-import 'moment/locale/fr';
-moment.locale('fr');
+import Departure from './Departure';
+import DepartureListHeader from './DepartureListHeader';
+import DeparturesList from './DeparturesList';
+import { connect } from 'react-redux';
+
 class NextDepartures extends Component {
   state = { departures: [] };
   reRenderAll = () => {
@@ -19,34 +21,25 @@ class NextDepartures extends Component {
       this.setState({ departures });
     });
   };
-  componentDidMount = () => {
-    //this.renderAll();
-  };
 
-  renderResults = departures => {
-    return departures.map((dep, key) => {
-      const { display_informations, stop_date_time } = dep;
-      const depTime = moment(stop_date_time.departure_date_time);
-      return (
-        <li key={key}>
-          RER {display_informations.label} ({display_informations.headsign}) en
-          direction de {display_informations.direction}, départ à{' '}
-          {depTime.format('LT')} ({depTime.fromNow()})
-        </li>
-      );
-    });
-  };
   render() {
-    const { stop_area } = this.props;
-    const { departures } = this.state;
+    const { stopArea, departures } = this.props;
+    if (departures.loading) { return <div>Loading...</div> }
+    if (departures.error) { return <div>Error</div> }
     return (
       <div>
-        <p>Prochains trains au départ de : {stop_area.name}</p>
-
-        {departures && <ul>{this.renderResults(departures)}</ul>}
+        <DepartureListHeader stopArea={stopArea} />
+        <DeparturesList departures={departures.departuresList} />
       </div>
     );
   }
 }
 
-export default NextDepartures;
+
+const mapStateToProps = (state) => {
+  return {
+    stopArea: state.stopArea,
+    departures: state.departures
+  }
+}
+export default connect(mapStateToProps)(NextDepartures);

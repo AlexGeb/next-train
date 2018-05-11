@@ -15,10 +15,10 @@ export const fetchAutocomplete = partial_value => {
   };
 };
 
-export function fetchAutocompleteSuccess(departures) {
+export function fetchAutocompleteSuccess(items) {
   return {
     type: FETCH_AUTOCOMPLETE_SUCCESS,
-    payload: departures
+    payload: items
   };
 }
 
@@ -27,4 +27,12 @@ export function fetchAutocompleteFailure(error) {
     type: FETCH_AUTOCOMPLETE_FAILURE,
     payload: error
   };
+}
+
+const autocomplete = (val) => {
+  return (dispatch) => {
+    return getPossibleItems(val).then(
+      items => dispatch(fetchAutocompleteSuccess(items)), error => dispatch(fetchAutocompleteFailure(error))
+    )
+  }
 }

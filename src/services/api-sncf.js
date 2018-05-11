@@ -15,3 +15,5 @@ export const getNextDepartures = stop_area_id => {
     { headers }
   ).then(resp => resp.json());
 };
+
+

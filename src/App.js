@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import StopAreaAutocomplete from './components/StopAreaAutocomplete';
-import NextDeparturesContainer from './containers/NextDeparturesContainer';
+import NextDepartures from './components/NextDepartures';
 
 class App extends Component {
   state = {};
@@ -22,7 +22,7 @@ class App extends Component {
             this.setState({ stop_area });
           }}
         />
-        <NextDeparturesContainer />
+        <NextDepartures />
       </div>
     );
   }

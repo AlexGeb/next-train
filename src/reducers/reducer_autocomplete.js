@@ -14,7 +14,7 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_AUTOCOMPLETE:
       return {
         ...state,
-        autocomplete: { items: [], error: null, loading: false }
+        autocomplete: { items: [], error: null, loading: true }
       };
     case FETCH_AUTOCOMPLETE_SUCCESS:
       return {

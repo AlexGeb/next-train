@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Autocomplete from 'react-autocomplete';
 import { getPossibleItems } from '../services/api-sncf';
+import { connect } from 'react-redux';
+import { setSelectedStopArea } from '../actions/stopArea';
+import { fetchDeparturesSuccess, fetchDeparturesFailure, fetchDepartures } from '../actions/departures';
 
 class StopAreaAutocomplete extends Component {
   state = { items: [], value: '' };
@@ -17,7 +20,9 @@ class StopAreaAutocomplete extends Component {
   };
   onSelect = item => {
     this.setState({ value: item.label });
-    this.props.onSelect(item);
+    const { setSelectedStopArea, fetchDepartures } = this.props;
+    setSelectedStopArea(item)
+    fetchDepartures(item.id)
   };
   render() {
     const { value, items } = this.state;
@@ -43,4 +48,16 @@ class StopAreaAutocomplete extends Component {
     );
   }
 }
-export default StopAreaAutocomplete;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setSelectedStopArea: (stopArea) => {
+      return dispatch(setSelectedStopArea(stopArea))
+    },
+    fetchDepartures: (stopArea) => {
+      return dispatch(fetchDepartures(stopArea))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(StopAreaAutocomplete);
