@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import DepartureListHeader from './DepartureListHeader';
 import DeparturesList from './DeparturesList';
 import { connect } from 'react-redux';
 
 class NextDepartures extends Component {
   render() {
-    const { stopArea, departures } = this.props;
+    const { departures } = this.props;
     if (departures.loading) {
       return (
         <img
@@ -17,18 +16,12 @@ class NextDepartures extends Component {
     if (departures.error) {
       return <span>{departures.error.message}</span>;
     }
-    return (
-      <div>
-        <DepartureListHeader stopArea={stopArea} />
-        <DeparturesList departures={departures.departuresList} />
-      </div>
-    );
+    return <DeparturesList departures={departures.departuresList} />;
   }
 }
 
 const mapStateToProps = state => {
   return {
-    stopArea: state.stopArea,
     departures: state.departures
   };
 };

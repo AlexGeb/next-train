@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Title = styled.p`
   padding: 2.5px 10px;
-  font-size: 1.5em;
+  font-size: 11pt;
   text-align: center;
 `;
 
