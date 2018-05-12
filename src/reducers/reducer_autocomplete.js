@@ -11,7 +11,7 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_AUTOCOMPLETE:
       return {
-        items: [],
+        ...state,
         error: null,
         loading: true
       };

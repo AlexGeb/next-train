@@ -16,7 +16,9 @@ export const getPossibleItems = partialValue => {
     {
       headers
     }
-  ).then(handleResponse);
+  )
+    .then(handleResponse)
+    .then(items => items.places.map(p => p.stop_area));
 };
 
 export const getNextDepartures = stop_area_id => {
@@ -27,5 +29,15 @@ export const getNextDepartures = stop_area_id => {
   return fetch(
     `${endPoint}/stop_areas/${stop_area_id}/departures?data_freshness=realtime&disable_geojson=true&${forbiddenUris}`,
     { headers }
-  ).then(handleResponse);
+  )
+    .then(handleResponse)
+    .then(resp => resp.departures);
+};
+
+export const getStopAreaInfo = stop_area_id => {
+  return fetch(`${endPoint}/stop_areas/${stop_area_id}`, {
+    headers
+  })
+    .then(handleResponse)
+    .then(resp => resp.stop_areas[0]);
 };

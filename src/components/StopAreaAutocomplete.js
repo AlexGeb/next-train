@@ -17,7 +17,10 @@ const Input = styled.input`
 `;
 const Item = styled.div`
   text-align: left;
+  color: black;
   padding: 2.5px 10px;
+  background-color: ${({ highlighted }) =>
+    highlighted ? 'papayawhip' : 'transparent'};
 `;
 class StopAreaAutocomplete extends Component {
   state = { value: '' };
@@ -41,10 +44,7 @@ class StopAreaAutocomplete extends Component {
         }
         getItemValue={item => item.label}
         renderItem={(item, highlighted) => (
-          <Item
-            key={item.id}
-            style={{ backgroundColor: highlighted ? '#eee' : 'transparent' }}
-          >
+          <Item key={item.id} highlighted={highlighted}>
             {item.label}
           </Item>
         )}

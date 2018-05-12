@@ -11,33 +11,19 @@ import {
   fetchAutocompleteFailure
 } from '../actions/autocomplete';
 
-const requestDepartures = stop_area_id =>
-  getNextDepartures(stop_area_id).then(resp =>
-    Promise.resolve(
-      resp.departures.sort((d1, d2) =>
-        d1.display_informations.label.localeCompare(
-          d2.display_informations.label
-        )
-      )
-    )
-  );
-
 function* fetchNextDepartures(action) {
   try {
-    const departures = yield call(requestDepartures, action.payload);
+    const departures = yield call(getNextDepartures, action.payload);
+    window.location.hash = '#'+action.payload;
     yield put(fetchDeparturesSuccess(departures));
   } catch (e) {
     yield put(fetchDeparturesFailure(e));
   }
 }
 
-const requestPossibleItems = partial_value =>
-  getPossibleItems(partial_value).then(items =>
-    Promise.resolve(items.places.map(p => p.stop_area))
-  );
 function* fetchAutocompleteItems(action) {
   try {
-    const items = yield call(requestPossibleItems, action.payload);
+    const items = yield call(getPossibleItems, action.payload);
     yield put(fetchAutocompleteSuccess(items));
   } catch (e) {
     yield put(fetchAutocompleteFailure(e));
