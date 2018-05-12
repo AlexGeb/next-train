@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import Autocomplete from 'react-autocomplete';
-import { getPossibleItems } from '../services/api-sncf';
 import { connect } from 'react-redux';
 import { setSelectedStopArea } from '../actions/stopArea';
-import {
-  fetchDeparturesSuccess,
-  fetchDeparturesFailure,
-  fetchDepartures
-} from '../actions/departures';
+import { fetchDepartures } from '../actions/departures';
 import { fetchAutocomplete } from '../actions/autocomplete';
 import styled from 'styled-components';
 

@@ -23,7 +23,7 @@ export default (state = INITIAL_STATE, action) => {
       };
     case FETCH_AUTOCOMPLETE_FAILURE: // return error and make loading = false
       error = action.payload || { message: action.payload.message }; //2nd one is network or server down errors
-      return { ...state, error: error, loading: false };
+      return { ...state, error, loading: false };
     default:
       return state;
   }

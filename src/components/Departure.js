@@ -1,9 +1,5 @@
-import React, { Component } from 'react';
-import * as moment from 'moment';
-import 'moment/locale/fr';
+import React from 'react';
 import styled from 'styled-components';
-
-moment.locale('fr');
 
 const Line = styled.p`
   padding: 2.5px 10px;
@@ -11,8 +7,7 @@ const Line = styled.p`
 `;
 
 const Departure = ({ departure }) => {
-  const { display_informations, stop_date_time } = departure;
-  const depTime = moment(stop_date_time.departure_date_time);
+  const { display_informations, depTime } = departure;
   return (
     <Line>
       <span style={{ color: '#' + display_informations.color }}>

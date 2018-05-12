@@ -1,5 +1,3 @@
-import { getPossibleItems } from '../services/api-sncf';
-
 //Fetch autocomplete api
 export const FETCH_AUTOCOMPLETE = 'FETCH_AUTOCOMPLETE';
 export const FETCH_AUTOCOMPLETE_SUCCESS = 'FETCH_AUTOCOMPLETE_SUCCESS';

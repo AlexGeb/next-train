@@ -2,7 +2,6 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import {
   fetchDeparturesSuccess,
   fetchDeparturesFailure,
-  fetchDepartures,
   FETCH_DEPARTURES
 } from '../actions/departures';
 import { getNextDepartures, getPossibleItems } from '../services/api-sncf';
@@ -12,17 +11,14 @@ import {
   fetchAutocompleteFailure
 } from '../actions/autocomplete';
 
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
 const requestDepartures = stop_area_id =>
   getNextDepartures(stop_area_id).then(resp =>
     Promise.resolve(
-      resp.departures
-        // .filter(d => d.display_informations.network === 'RER')
-        .sort((d1, d2) =>
-          d1.display_informations.label.localeCompare(
-            d2.display_informations.label
-          )
+      resp.departures.sort((d1, d2) =>
+        d1.display_informations.label.localeCompare(
+          d2.display_informations.label
         )
+      )
     )
   );
 

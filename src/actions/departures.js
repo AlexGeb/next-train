@@ -1,4 +1,3 @@
-import { getNextDepartures } from '../services/api-sncf';
 //Fetch departures
 export const FETCH_DEPARTURES = 'FETCH_DEPARTURES';
 export const FETCH_DEPARTURES_SUCCESS = 'FETCH_DEPARTURES_SUCCESS';

@@ -1,9 +1,7 @@
 import {
   FETCH_DEPARTURES,
   FETCH_DEPARTURES_FAILURE,
-  FETCH_DEPARTURES_SUCCESS,
-  fetchDeparturesSuccess,
-  fetchDeparturesFailure
+  FETCH_DEPARTURES_SUCCESS
 } from '../actions/departures';
 const INITIAL_STATE = {
   departuresList: [],
