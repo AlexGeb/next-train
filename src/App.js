@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
 import StopAreaAutocomplete from './components/StopAreaAutocomplete';
 import NextDepartures from './components/NextDepartures';
+import styled, { ThemeProvider } from 'styled-components';
+
+const Wrapper = styled.div`
+  margin: auto;
+  padding: 20px 0;
+  text-align: center;
+`;
 
 class App extends Component {
   state = {};
   render() {
     const { stop_area } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <Wrapper>
         <StopAreaAutocomplete
           onSelect={stop_area => {
             this.setState({ stop_area });
           }}
         />
         <NextDepartures />
-      </div>
+      </Wrapper>
     );
   }
 }
