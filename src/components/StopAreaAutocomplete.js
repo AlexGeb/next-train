@@ -9,7 +9,21 @@ import {
   fetchDepartures
 } from '../actions/departures';
 import { fetchAutocomplete } from '../actions/autocomplete';
+import styled from 'styled-components';
 
+const Input = styled.input`
+  padding: 0.5em;
+  font-size: 1.5em;
+  margin: 0.5em;
+  background: papayawhip;
+  border: none;
+  border-radius: 3px;
+  min-width: 500px;
+`;
+const Item = styled.div`
+  text-align: left;
+  padding: 2.5px 10px;
+`;
 class StopAreaAutocomplete extends Component {
   state = { value: '' };
   onValueChanged = e => {
@@ -32,13 +46,23 @@ class StopAreaAutocomplete extends Component {
         }
         getItemValue={item => item.label}
         renderItem={(item, highlighted) => (
-          <div
+          <Item
             key={item.id}
             style={{ backgroundColor: highlighted ? '#eee' : 'transparent' }}
           >
             {item.label}
-          </div>
+          </Item>
         )}
+        renderInput={props => {
+          const { ref, ...rest } = props;
+          return (
+            <Input
+              {...rest}
+              innerRef={ref}
+              placeholder="Rechercher une gare de départ"
+            />
+          );
+        }}
         value={value}
         onChange={e => this.onValueChanged(e)}
         onSelect={(value, item) => this.onSelect(item)}

@@ -24,8 +24,14 @@ class NextDepartures extends Component {
 
   render() {
     const { stopArea, departures } = this.props;
-    if (departures.loading) { return <div>Loading...</div> }
-    if (departures.error) { return <div>Error</div> }
+    if (departures.loading) {
+      return (
+        <img src="http://blog.theodo.fr/wp-content/uploads/2015/12/01.gif" />
+      );
+    }
+    if (departures.error) {
+      return <div>Error</div>;
+    }
     return (
       <div>
         <DepartureListHeader stopArea={stopArea} />
@@ -35,11 +41,10 @@ class NextDepartures extends Component {
   }
 }
 
-
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     stopArea: state.stopArea,
     departures: state.departures
-  }
-}
+  };
+};
 export default connect(mapStateToProps)(NextDepartures);
