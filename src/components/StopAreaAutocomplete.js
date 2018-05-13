@@ -6,6 +6,10 @@ import { fetchDepartures } from '../actions/departures';
 import { fetchAutocomplete } from '../actions/autocomplete';
 import styled from 'styled-components';
 
+const AutocompleteWrapper = styled.div`
+  padding: 10px;
+`;
+
 const Input = styled.input`
   font-family: 'Tauri', sans-serif;
   font-size: 11pt;
@@ -50,7 +54,7 @@ class StopAreaAutocomplete extends Component {
       this.toggle = true;
     }
     return (
-      <div>
+      <AutocompleteWrapper>
         <Label>Départ :</Label>
         <Autocomplete
           items={items}
@@ -77,7 +81,7 @@ class StopAreaAutocomplete extends Component {
           onChange={e => this.onValueChanged(e)}
           onSelect={(value, item) => this.onSelect(item)}
         />
-      </div>
+      </AutocompleteWrapper>
     );
   }
 }
