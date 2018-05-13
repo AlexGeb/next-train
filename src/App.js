@@ -17,7 +17,7 @@ const Heure = styled.div`
   position: fixed;
   top: -40pt;
   right: 8pt;
-  width: 4em;
+  width: 5em;
   padding: 0.2em;
   padding-top: 40pt;
   margin: 0;

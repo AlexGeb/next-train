@@ -31,7 +31,9 @@ export const getNextDepartures = stop_area_id => {
     { headers }
   )
     .then(handleResponse)
-    .then(resp => resp.departures);
+    .then(resp => {
+      return resp.departures;
+    });
 };
 
 export const getStopAreaInfo = stop_area_id => {
