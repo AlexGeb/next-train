@@ -15,7 +15,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf next-RER && mv build next-RER",
+    "build": "react-scripts build && rm -rf next-TER && mv build next-TER",
+    "build:deploy": "yarn build && yarn deploy",
+    "deploy": "rm -f ./next-TER/static/js/*.js.map && cp now.json next-TER/ && now next-TER",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

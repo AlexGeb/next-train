@@ -102,6 +102,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  StopAreaAutocomplete
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(StopAreaAutocomplete);

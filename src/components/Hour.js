@@ -6,14 +6,14 @@ const Heure = styled.div`
   position: fixed;
   top: -40pt;
   right: 8pt;
-  width: 4em;
+  width: 4.5em;
   padding: 0.2em;
   padding-top: 40pt;
   margin: 0;
   background-color: navy;
   border-radius: 0.56em;
   border: white 0.18em solid;
-  font-size: 125%;
+  font-size: 100%;
   z-index: 1;
   cursor: default;
   text-align: center;
@@ -32,6 +32,6 @@ export default class extends Component {
     clearInterval(this.interval);
   };
   render() {
-    return <Heure>{this.state.time.format('LT')}</Heure>;
+    return <Heure>{this.state.time.format('LTS')}</Heure>;
   }
 }
